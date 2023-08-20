@@ -3,8 +3,23 @@ import "tailwindcss/tailwind.css";
 import { Nav } from "./components/nav";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Card } from "./components/card";
+type dataType = [
+  {
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    image: string;
+    rating: {
+      rate: number;
+      count: number;
+    };
+  }
+];
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([{}] as dataType);
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products")
@@ -18,7 +33,17 @@ function App() {
   return (
     <>
       <Nav />
-      <div className="flex justify-evenly align-middle my-6"></div>
+      <div className="flex justify-around align-middle my-6 flex-wrap gap-2">
+        {data?.map((item) => (
+          <Card
+            key={item.id}
+            category={item.category}
+            description={item.description}
+            image={item.image}
+            title={item.title}
+          />
+        ))}
+      </div>
     </>
   );
 }
