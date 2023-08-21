@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { TextRevise, capitalizeFirstLetter } from "../../utils/functions";
 import { ModalContext } from "../contexts/modalContext";
+import axios from "axios";
 type CardProps = {
   id: number;
   image: string;
@@ -16,6 +17,16 @@ export const Card = ({
   description,
 }: CardProps) => {
   const { setIsOpen } = useContext(ModalContext);
+  const openViewModal = () => {
+    axios
+      .get(`https://fakestoreapi.com/products/${id}`)
+      .then((res) => {
+        setIsOpen({ id: id, isOpen: true, data: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="card max-h-full min-h-fit h-fit overflow-hidden p-1 max-w-full w-10/12">
       <img src={image} alt="" className="rounded-t-lg max-h-52 h-52" />
@@ -33,7 +44,7 @@ export const Card = ({
           {TextRevise(description, 90)}
         </p>
       </div>
-      <button className="btn" onClick={() => setIsOpen({ id, isOpen: true })}>
+      <button className="btn" onClick={openViewModal}>
         View
       </button>
     </div>

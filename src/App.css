@@ -9,5 +9,10 @@
 .card {
     @apply border border-white shadow-xl rounded-lg flex flex-col align-middle justify-center w-3/12 h-4/5 pb-4 bg-gray-50 bg-opacity-30 backdrop-blur-sm text-sm;
 }
+
+.modal{
+    @apply absolute top-1/2 left-1/2 w-96 bg-white shadow-lg p-4 rounded-lg bg-opacity-75 backdrop-blur-sm;
+    transform: translate(-50%, -50%);
+}
 }
 
