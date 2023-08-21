@@ -37,6 +37,7 @@ function App() {
         {data?.map((item) => (
           <Card
             key={item.id}
+            id={item.id}
             category={item.category}
             description={item.description}
             image={item.image}

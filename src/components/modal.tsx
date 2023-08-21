@@ -17,7 +17,6 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-type ModalProps = { id: number };
 type ModalContent = {
   id: number;
   image: string;
@@ -27,12 +26,12 @@ type ModalContent = {
   price: number;
 };
 
-export const BasicModal = ({ id }: ModalProps) => {
+export const BasicModal = () => {
   const [data, setData] = useState({} as ModalContent);
   const { isOpen, setIsOpen } = useContext(ModalContext);
   const handleOpen = () => {
     axios
-      .get(`https://fakestoreapi.com/products/${id}`)
+      .get(`https://fakestoreapi.com/products/${isOpen.id}`)
       .then((res) => {
         setData(res.data);
         console.log(data);
@@ -41,13 +40,13 @@ export const BasicModal = ({ id }: ModalProps) => {
         console.log(err);
       });
   };
-  const handleClose = () => setIsOpen(false);
+  const handleClose = () => setIsOpen({ isOpen: false, id: null });
 
   return (
     <div>
       <Button onClick={handleOpen}>Open modal</Button>
       <Modal
-        open={isOpen}
+        open={isOpen.isOpen}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
