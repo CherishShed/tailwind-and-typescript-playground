@@ -21,12 +21,16 @@ export const BasicModal = () => {
           <img
             src={data?.image}
             alt=""
-            className="rounded-t-lg max-h-52 h-52"
+            className="rounded-t-lg h-1/2 max-h-60 w-full"
           />
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <p id="modal-modal-title" className="text-base font-normal">
             {data?.title}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          </p>
+          <Typography
+            id="modal-modal-description"
+            className="max-h-32 overflow-auto"
+            sx={{ mt: 2 }}
+          >
             {data?.description}
           </Typography>
           <p className="font-bold text-sm text-red-400">{data?.price}</p>

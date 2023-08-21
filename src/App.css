@@ -2,6 +2,12 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+*::-webkit-scrollbar-thumb{
+    @apply bg-red-400
+}
+*::-webkit-scrollbar{
+    @apply bg-gray-100 w-1
+}
 @layer components{
 .btn{
 @apply py-1 px-2 border ring-1 ring-red-400 cursor-pointer hover:ring-2 active:ring-4 rounded-md font-bold text-red-600 tracking-wider;
